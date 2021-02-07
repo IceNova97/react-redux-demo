@@ -26,7 +26,7 @@ class GroupList extends Component {
     const { load } = this.props.load;
     return (
       <React.Fragment>
-        <Row style={{ paddingTop: 20 }}>
+        <Row>
           <Col>
             <Button icon={<ContainerTwoTone />} onClick={this.handlePostClick}>
               获取数据

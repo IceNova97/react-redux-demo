@@ -1,13 +1,11 @@
 import "./App.css";
 import GroupList from "./components/groupList";
+import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
-import {
-  MailOutlined,
-  AppstoreOutlined,
-  SettingOutlined,
-  StarFilled,
-} from "@ant-design/icons";
-import { Layout, Menu } from "antd";
+import MyProgress from "./components/myProgress";
+import MyTimeline from "./components/myTimeline";
+import { Layout } from "antd";
+import Navbar from "./components/navbar";
 
 const App = (props) => {
   const { Header, Content } = Layout;
@@ -15,34 +13,22 @@ const App = (props) => {
   return (
     <Layout>
       <Header>
-        <Menu mode="horizontal" theme="dark">
-          <Menu.Item key="mail" icon={<MailOutlined />}>
-            Navigation One
-          </Menu.Item>
-          <Menu.Item key="app" icon={<AppstoreOutlined />}>
-            Navigation Two
-          </Menu.Item>
-          <Menu.Item key="settings" icon={<SettingOutlined />}>
-            Navigation Three
-          </Menu.Item>
-          <Menu.Item
-            key="stars"
-            style={{ marginLeft: 200 }}
-            icon={<StarFilled />}
-          >
-            stars: {count}
-          </Menu.Item>
-        </Menu>
+        <Navbar count={count} />
       </Header>
       <Content
-        className="my-content"
         style={{
           paddingLeft: 300,
           paddingRight: 300,
+          paddingTop: 30,
           background: "white",
         }}
       >
-        <GroupList />
+        <Switch>
+          <Route path="/groupList" component={GroupList} />
+          <Route path="/progress" component={MyProgress} />
+          <Route path="/timeline" component={MyTimeline} />
+          <Route path="/" exact component={GroupList} />
+        </Switch>
       </Content>
     </Layout>
   );
